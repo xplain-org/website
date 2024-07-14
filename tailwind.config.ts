@@ -20,6 +20,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [debugscreen],
+  plugins: process.env.NODE_ENV === 'development' ? [debugscreen] : [],
 };
 export default config;
