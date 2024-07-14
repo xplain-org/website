@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 20px 5px #A7F10C, 0 0 30px 10px #A7F10C;
+    /* Increased glow */
+  }
+
+  50% {
+    box-shadow: 0 0 30px 10px #A7F10C, 0 0 40px 15px #A7F10C;
+    /* Increased and more intense glow */
+  }
+
+  100% {
+    box-shadow: 0 0 20px 5px #A7F10C, 0 0 30px 10px #A7F10C;
+    /* Return to initial glow */
+  }
+}
+
+#glow-button {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #A7F10C;
+  box-shadow: 0 0 20px 5px #A7F10C, 0 0 30px 10px #A7F10C;
+  /* Enhanced glow */
+  pointer-events: none;
+  filter: blur(6px);
+  /* Consider increasing blur for more glow */
+  transition: top 0.1s ease, left 0.1s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+#glow-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #A7F10C;
+  box-shadow: 0 0 14px 3px #A7F10C;
+  pointer-events: none;
+  filter: blur(6px);
+  transition: top 0.1s ease, left 0.1s ease;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+/* 
+#radial-gradient {
+  width: 65px;
+  height: 4px;
+  background: radial-gradient(25% 47.387% at 41.625% 91.625%, rgb(86, 219, 172) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 72px;
+  pointer-events: none;
+  filter: blur(0px);
+}
+ */
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
