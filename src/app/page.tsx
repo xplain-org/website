@@ -27,7 +27,6 @@ class MouseMovementObserver {
 }
 
 // Create a single instance of the observer
-const mouseMovementObserver = new MouseMovementObserver();
 
 interface GlowDotProps {
   position: {
@@ -80,6 +79,8 @@ export default function Home() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
+    const mouseMovementObserver = new MouseMovementObserver();
+
     const updatePosition = (e: MouseEvent) => {
       setPosition({ x: e.pageX, y: e.pageY });
     };
