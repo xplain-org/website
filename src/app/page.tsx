@@ -4,8 +4,9 @@ import { useEffect, useState, useRef, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 
 // const Navbar = lazy(() => import("@components/Navbar"));
-// const Caroussel = lazy(() => import("@components/Caroussel"));
+const Caroussel = lazy(() => import("@components/Caroussel"));
 import Navbar from "@/components/Navbar";
+// import Caroussell from "@/components/Caroussel";
 
 //observer design pattern
 class MouseMovementObserver {
@@ -78,6 +79,7 @@ export default function Home() {
     top: 0,
     left: 0,
   });
+  const [contentLoaded, setContentLoaded] = useState(false);
 
   const images = [
     "/test.PNG",
@@ -101,10 +103,21 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    // Assuming Caroussel component or its children can somehow signal when they're fully loaded
+    // This could be through event listeners, callbacks, or global state
+    // For demonstration, we'll simulate a loaded state with a timeout
+    const timer = setTimeout(() => {
+      setContentLoaded(true);
+    }, 1000); // Simulate a loading time
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
-      {/* <GlowDot position={position} /> */}
-      <main className="flex min-h-screen flex-col items-center ">
+      <GlowDot position={position} />
+      <main className="flex flex-col items-center ">
         <Suspense fallback={<div className="h-[112px] "></div>}>
           <Navbar />
         </Suspense>
@@ -149,10 +162,7 @@ export default function Home() {
             Developement Studio
           </motion.p>
         </div>
-        {/* <Suspense fallback={<div>Loading...</div>}>
-          <Caroussel />
-        </Suspense> */}
-        <div className=" w-[1080px] h-[500px] bg-white"></div>
+        {contentLoaded && <Caroussel />}
       </main>
     </>
   );
