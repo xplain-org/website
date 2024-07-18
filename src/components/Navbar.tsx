@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 const AnimatedButton: React.FC = () => {
@@ -29,39 +29,42 @@ const AnimatedButton: React.FC = () => {
   };
 
   return (
-    <motion.button
-      className="relative  w-[158px] h-[58px] rounded-full overflow-hidden flex items-center justify-center"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      initial={{ x: "20vw", opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{
-        delay: 0.5,
-        duration: 1,
-        type: "linear",
-        // stiffness: 120,
-      }}
-    >
-      <motion.div
-        className="bg-[#2C2C2C] w-full h-full "
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
+    <AnimatePresence initial={true}>
+      <motion.button
+        className="relative bg-white w-[158px] h-[58px] rounded-full overflow-hidden flex items-center justify-center "
+        style={{ willChange: "transform" }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        initial={{ opacity: 0 }} //x:150  trnalate the element from of screen to screen. makes the scaling of xplain hero section laging
+        animate={{ opacity: 1 }} //x:0
         transition={{
+          delay: 0.5,
           duration: 1,
           type: "linear",
+          stiffness: 120,
         }}
-      ></motion.div>
-      <motion.div
-        id="glow-button"
-        className={`rounded-full absolute  `}
-        variants={variants}
-        animate={hovered ? "hover" : "animate"}
-        // animate="animate"
-      />
-      <div className="bg-black w-[154px] h-[54px] rounded-full absolute text-white flex items-center justify-center">
-        Book a call
-      </div>
-    </motion.button>
+        translate="yes"
+      >
+        <motion.div
+          className="bg-[#2C2C2C] w-full h-full "
+          // initial={{ opacity: 0 }}
+          // animate={{ opacity: 0.5 }}
+          // transition={{
+          //   duration: 1,
+          //   type: "linear",
+          // }}
+        ></motion.div>
+        <motion.div
+          id="glow-button"
+          className={`rounded-full absolute  `}
+          variants={variants}
+          animate={hovered ? "hover" : "animate"}
+        />
+        <div className="bg-black w-[154px] h-[54px] rounded-full absolute text-white flex items-center justify-center">
+          Book a call
+        </div>
+      </motion.button>
+    </AnimatePresence>
   );
 };
 

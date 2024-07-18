@@ -3,8 +3,11 @@ import Image from "next/image";
 import { useEffect, useState, useRef, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 
-const Navbar = lazy(() => import("@components/Navbar"));
+// const Navbar = lazy(() => import("@components/Navbar"));
+// const Caroussel = lazy(() => import("@components/Caroussel"));
+import Navbar from "@/components/Navbar";
 
+//observer design pattern
 class MouseMovementObserver {
   constructor() {
     this.observers = [];
@@ -76,6 +79,12 @@ export default function Home() {
     left: 0,
   });
 
+  const images = [
+    "/test.PNG",
+
+    // Add more image URLs as needed
+  ];
+
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -94,21 +103,24 @@ export default function Home() {
 
   return (
     <>
-      <GlowDot position={position} />
+      {/* <GlowDot position={position} /> */}
       <main className="flex min-h-screen flex-col items-center ">
         <Suspense fallback={<div className="h-[112px] "></div>}>
           <Navbar />
         </Suspense>
-        <div className="flex flex-col justify-center items-center">
+        <div className="relative flex flex-col justify-center items-center  z-20 w-[600px]  overflow-hidden">
           <motion.h1
-            className="text-[15vw] text-white font-bold shadow-lg tracking-wide shadow-lg font-outfit"
+            style={{ willChange: "transform" }}
+            className="text-[15vw] text-white font-bold shadow-lg tracking-wide shadow-lg font-outfit  "
             initial={{
               opacity: 0,
               scale: 0.7,
+              // display: "none",
             }}
             animate={{
               opacity: 1,
               scale: 1,
+              // display: "",
             }}
             transition={{
               duration: 1,
@@ -118,7 +130,8 @@ export default function Home() {
             xplain
           </motion.h1>
           <motion.p
-            className="text-2xl text-white font-bold  font-outfit"
+            style={{ willChange: "transform" }}
+            className="text-2xl text-white font-bold  font-outfit "
             initial={{
               y: "15vh",
               opacity: 0,
@@ -136,6 +149,10 @@ export default function Home() {
             Developement Studio
           </motion.p>
         </div>
+        {/* <Suspense fallback={<div>Loading...</div>}>
+          <Caroussel />
+        </Suspense> */}
+        <div className=" w-[1080px] h-[500px] bg-white"></div>
       </main>
     </>
   );
