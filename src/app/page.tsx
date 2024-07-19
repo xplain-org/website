@@ -121,7 +121,7 @@ export default function Home() {
         <Suspense fallback={<div className="h-[112px] "></div>}>
           <Navbar />
         </Suspense>
-        <div className="relative flex flex-col justify-center items-center  z-20 w-[600px]  overflow-hidden">
+        <div className="relative flex flex-col justify-center items-center  z-20   overflow-hidden">
           <motion.h1
             style={{ willChange: "transform" }}
             className="text-[15vw] text-white font-bold shadow-lg tracking-wide shadow-lg font-outfit  "

@@ -1,7 +1,6 @@
 // LazyLoadedDiv.tsx
 import { useRef, useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { transform } from "next/dist/build/swc";
 // import
 const images = [
   "./1.png",
@@ -86,7 +85,7 @@ const Caroussell = () => {
             src={image}
             alt={`Carousel ${index}`}
             className="rounded-xl"
-            style={{ width: "600px  ", height: "100%" }}
+            style={{ width: "250px", height: "100%" }}
           />
         ))}
       </motion.div>
